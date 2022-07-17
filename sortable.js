@@ -472,7 +472,7 @@ async function loadHeroes() {
         ) {
           return -1;
         } else if (
-          //Q to add convertHeight function
+          
           convertHeight(a.appearance[column][1]) ===
           convertHeight(b.appearance[column][1])
         ) {
@@ -734,9 +734,33 @@ async function loadHeroes() {
         if (oldTable !== null) oldTable.remove();
 
         createSortedTable(sortedHeroes, value);
-            
+
     }
   };
 }
 
 loadHeroes();
+
+const createTable = (list, value) => {
+    let table = document.createElement("table");
+    table.setAttribute("id", "heroesTable"); //makes a table element for the page
+    for (let i = 0; i < value; i++) {
+        let row = table.insertRow(i);
+        row.insertCell(0).innerHTML = "<img src = ${list[i].images.xs} >"; 
+        row.insertCell(1).innerHTML = list[i].name;
+        row.insertCell(2).innerHTML = list[i].biography.fullName;
+        row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
+        row.insertCell(4).innerHTML = list[i].powerstats.strength;
+        row.insertCell(5).innerHTML = list[i].powerstats.speed;
+        row.insertCell(6).innerHTML = list[i].powerstats.durability;
+        row.insertCell(7).innerHTML = list[i].powerstats.power;
+        row.insertCell(8).innerHTML = list[i].powerstats.combat;
+        row.insertCell(9).innerHTML = list[i].appearance.race;
+        row.insertCell(10).innerHTML = list[i].appearance.gender;
+        row.insertCell(11).innerHTML = list[i].appearance.height[1];
+        row.insertCell(12).innerHTML = list[i].appearance.weight[1];
+        row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
+        row.insertCell(14).innerHTML = list[i].biography.alignment;
+    }
+    document.body.append(table);
+};
