@@ -1,4 +1,3 @@
-// cmarcelo963
 async function getHeroes() {
   let url =
     "https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json";
@@ -16,7 +15,7 @@ let sortedHeroes;
 
 const createTable = (list, value) => {
     let table = document.createElement("table");
-    table.setAttribute("id", "heroesTable"); //makes a table element for the page
+    table.setAttribute("id", "heroesTable");
     for (let i = 0; i < value; i++) {
         let row = table.insertRow(i);
         row.insertCell(0).innerHTML = `<img src = ${list[i].images.xs} >`;
@@ -40,7 +39,7 @@ const createTable = (list, value) => {
 
 const createSortedTable = (list, value) => {
     let table = document.createElement("tbody");
-    table.setAttribute("id", "heroesTable"); //makes a table element for the page
+    table.setAttribute("id", "heroesTable"); 
     for (let i = 0; i < value; i++) {
         let row = table.insertRow(i);
         row.insertCell(0).innerHTML = "<img src =" + list[i].images.xs + ">";
@@ -231,7 +230,7 @@ async function loadHeroes() {
     let headerRow = header.insertRow(0);
   
     for (let i = 0; i < headers.length; i++) {
-    headerRow.insertCell(i).outerHTML = `<th data-column=\"${headers[i]}\" data-order=desc>${headers[i]}</th>`;
+    headerRow.insertCell(i).outerHTML = `<th data-column=\"${headers[i]}\" data-order=descending>${headers[i]}</th>`;
     }
     document.querySelectorAll("th").forEach(e => e.addEventListener("click", sortTable));
 
@@ -241,9 +240,7 @@ async function loadHeroes() {
       
         if (order === "descending" && column === "name") {
             x.target.setAttribute("data-order", "ascending");
-            sortedHeroes = sortHeroes.sort((a, b) =>
-            a[column] > b[column] ? 1 : -1
-            );
+            sortedHeroes = sortHeroes.sort((a, b) => a[column] > b[column] ? 1 : -1);
             let table = document.querySelector("tbody");
             
             if (table !== null) table.remove();
@@ -251,12 +248,11 @@ async function loadHeroes() {
             createSortedTable(sortedHeroes, value);
         } else if (order === "ascending" && column === "name") {
             x.target.setAttribute("data-order", "descending");
-            sortedHeroes = sortHeroes.sort((a, b) =>
-            a[column] < b[column] ? 1 : -1
-            );
-            let table = documnet.querySelector("tbody");
+            sortedHeroes = sortHeroes.sort((a, b) => a[column] < b[column] ? 1 : -1);
+            let table = document.querySelector("tbody");
             
             if (table !== null) table.remove();
+            createSortedTable(sortedHeroes, value);
         } else if (order === "descending" && column === "fullName") {
             x.target.setAttribute("data-order", "ascending");
             sortedHeroes = sortHeroes.sort((a, b) => {
