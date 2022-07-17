@@ -650,3 +650,5 @@ async function loadHeroes() {
     //
   };
 }
+
+loadHeroes();
