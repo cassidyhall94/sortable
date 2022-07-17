@@ -401,6 +401,60 @@ async function loadHeroes() {
       if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
+
+    if (order === "descending" && column === "gender") {
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          a.appearance[column] === ""
+        ) {
+          return -1;
+        } else if (a.appearance[column] === b.appearance[column]) {
+          return 0;
+        } else {
+          return a.appearance[column] < b.appearance[column] ? -1 : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+
+    if (order === "ascending" && column === "gender") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          b.appearance[column] === ""
+        ) {
+          return -1;
+        } else if (a.appearance[column] === b.appearance[column]) {
+          return 0;
+        } else {
+          return a.appearance[column] < b.appearance[column] ? 1 : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
     //
   };
 }
