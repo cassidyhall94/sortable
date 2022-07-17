@@ -1,5 +1,4 @@
-//To start server :=> npx http-server
-
+// cmarcelo963
 async function getHeroes() {
   let url =
     "https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json";
@@ -12,7 +11,6 @@ async function getHeroes() {
   console.log(res);
 }
 let sortHeroes;
-// let heroes;
 let sortedHeroes;
 async function loadHeroes() {
   let heroes = await getHeroes();
