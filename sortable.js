@@ -348,7 +348,6 @@ async function loadHeroes() {
       createSortedTable(sortedHeroes, value);
     }
 
-    // CASSIDY
     if (order === "descending" && column === "race") {
       x.target.setAttribute("data-order", "ascending");
       sortedHeroes = sortHeroes.sort((a, b) => {
@@ -375,6 +374,7 @@ async function loadHeroes() {
       if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
+
     if (order === "ascending" && column === "race") {
       x.target.setAttribute("data-order", "descending");
       sortedHeroes = sortHeroes.sort((a, b) => {
@@ -455,6 +455,147 @@ async function loadHeroes() {
       if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
-    //
+
+    if (order === "descending" && column === "height") {
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          a.appearance[column][1] === undefined
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          b.appearance[column][1] === undefined
+        ) {
+          return -1;
+        } else if (
+          //Q to add convertHeight function
+          convertHeight(a.appearance[column][1]) ===
+          convertHeight(b.appearance[column][1])
+        ) {
+          return 0;
+        } else {
+          return convertHeight(a.appearance[column][1]) <
+            convertHeight(b.appearance[column][1])
+            ? -1
+            : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+    if (order === "ascending" && column === "height") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          a.appearance[column][1] === undefined
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          b.appearance[column][1] === undefined
+        ) {
+          return -1;
+        } else if (
+          convertHeight(a.appearance[column][1]) ===
+          convertHeight(b.appearance[column][1])
+        ) {
+          return 0;
+        } else {
+          return convertHeight(a.appearance[column][1]) <
+            convertHeight(b.appearance[column][1])
+            ? 1
+            : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+    if (order === "descending" && column === "weight") {
+        x.target.setAttribute("data-order", "ascending");
+        sortedHeroes = sortHeroes.sort((a, b) => {
+          if (
+            a.appearance[column] === null ||
+            a.appearance[column] === "-" ||
+            a.appearance[column] === "" ||
+            a.appearance[column][1] === undefined
+          ) {
+            return 1;
+          } else if (
+            b.appearance[column] === null ||
+            b.appearance[column] === "-" ||
+            a.appearance[column] === "" ||
+            b.appearance[column][1] === undefined
+          ) {
+            return -1;
+          } else if (
+              //Q to add convertWeight function
+            convertWeight(a.appearance[column][1]) ===
+            convertWeight(b.appearance[column][1])
+          ) {
+            return 0;
+          } else {
+            return convertWeight(a.appearance[column][1]) <
+              convertWeight(b.appearance[column][1])
+              ? -1
+              : 1;
+          }
+        });
+        let table = document.querySelector("tbody");
+  
+        if (table !== null) table.remove();
+        createSortedTable(sortedHeroes, value);
+      }
+  
+      if (order === "ascending" && column === "weight") {
+        x.target.setAttribute("data-order", "descending");
+        sortedHeroes = sortHeroes.sort((a, b) => {
+          if (
+            a.appearance[column] === null ||
+            a.appearance[column] === "-" ||
+            a.appearance[column] === "" ||
+            a.appearance[column][1] === undefined
+          ) {
+            return 1;
+          } else if (
+            b.appearance[column] === null ||
+            b.appearance[column] === "-" ||
+            a.appearance[column] === "" ||
+            b.appearance[column][1] === undefined
+          ) {
+            return -1;
+          } else if (
+            convertWeight(a.appearance[column][1]) ===
+            convertWeight(b.appearance[column][1])
+          ) {
+            return 0;
+          } else {
+            return convertWeight(a.appearance[column][1]) <
+              convertWeight(b.appearance[column][1])
+              ? 1
+              : -1;
+          }
+        });
+        let table = document.querySelector("tbody");
+  
+        if (table !== null) table.remove();
+        createSortedTable(sortedHeroes, value);
+      }
+
+      //
   };
 }
