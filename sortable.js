@@ -282,8 +282,11 @@ async function loadHeroes() {
             sortedHeroes = sortHeroes.sort((a, b) => a.powerstats[column] < b.powerstats[column] ? 1 : -1);
             let oldTable = document.querySelector('tbody');
             if (oldTable !== null) oldTable.remove();
-
+            
             createSortedTable(sortedHeroes, value);
-        };;
+        };
+
+// CASSIDY
+
     };
 };
