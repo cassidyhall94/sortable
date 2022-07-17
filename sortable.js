@@ -12,7 +12,6 @@ async function getHeroes() {
 let sortHeroes;
 let sortedHeroes;
 
-
 const createTable = (list, value) => {
     let table = document.createElement("table");
     table.setAttribute("id", "heroesTable");
@@ -74,7 +73,6 @@ const sortAscending = (arr, a, b) => {
         if (a === b) {
             return 0;
         }
-
         return a < b ? -1 : 1;
     });
 };
@@ -92,7 +90,6 @@ const sortDescending = (arr, a, b) => {
         if (a === b) {
             return 0;
         }
-
         return a < b ? 1 : -1;
     });
 };
@@ -211,7 +208,7 @@ async function loadHeroes() {
     const controls = document.getElementById("controls")
     const select = document.getElementById("search-select");
 
-    for(let i = 1; i < headers.length; i++) {
+    for (let i = 1; i < headers.length; i++) {
         const opt = headers[i];
         const el = document.createElement("option");
         el.textContent = opt;
@@ -231,7 +228,7 @@ async function loadHeroes() {
                 return hero[type].toLowerCase().includes(characters)
             } else if (attributes.s3.includes(type)) {
                 return hero.biography[type].toLowerCase().includes(characters)
-            } else if (attributes.m1.includes(type)) {  
+            } else if (attributes.m1.includes(type)) {
                 if (hero.appearance[type][1] !== undefined) {
                     return hero.appearance[type][1].toLowerCase().includes(characters)
                 }
@@ -779,7 +776,6 @@ async function loadHeroes() {
 
             createSortedTable(sortedHeroes, value);
         }
-
     };
 }
 loadHeroes();
