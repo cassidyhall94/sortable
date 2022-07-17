@@ -472,7 +472,6 @@ async function loadHeroes() {
         ) {
           return -1;
         } else if (
-          
           convertHeight(a.appearance[column][1]) ===
           convertHeight(b.appearance[column][1])
         ) {
@@ -648,7 +647,7 @@ async function loadHeroes() {
       createSortedTable(sortedHeroes, value);
     }
 
-      if (order === "descending" && column === "alignment") {
+    if (order === "descending" && column === "alignment") {
       x.target.setAttribute("data-order", "ascending");
       sortedHeroes = sortHeroes.sort((a, b) => {
         if (
@@ -673,68 +672,67 @@ async function loadHeroes() {
 
       if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
-      }
-      if (order === "ascending" && column === "alignment") {
-        x.target.setAttribute("data-order", "descending");
-        sortedHeroes = sortHeroes.sort((a, b) => {
-          if (
-            a.biography[column] === null ||
-            a.biography[column] === "-" ||
-            a.biography[column] === ""
-          ) {
-            return 1;
-          } else if (
-            b.biography[column] === null ||
-            b.biography[column] === "-" ||
-            b.biography[column] === ""
-          ) {
-            return -1;
-          } else if (a.biography[column] === b.biography[column]) {
-            return 0;
-          } else {
-            return a.biography[column] < b.biography[column] ? 1 : -1;
-          }
-        });
-        let table = document.querySelector("tbody");
-        if (table !== null) table.remove();
+    }
+    if (order === "ascending" && column === "alignment") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.biography[column] === null ||
+          a.biography[column] === "-" ||
+          a.biography[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.biography[column] === null ||
+          b.biography[column] === "-" ||
+          b.biography[column] === ""
+        ) {
+          return -1;
+        } else if (a.biography[column] === b.biography[column]) {
+          return 0;
+        } else {
+          return a.biography[column] < b.biography[column] ? 1 : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
-        createSortedTable(sortedHeroes, value);
-      }
-      if (order === "descending" && column === "icon") {
-        x.target.setAttribute("data-order", "ascending");
-        sortedHeroes = sortHeroes.sort((a, b) => {
-            column = "xs";
-            if (checkImage(a.images[column])) {
-                return 1;
-            } else if (checkImage(b.images[column])) {
-                return -1;
-            } else {
-                return parseInt(a.id) > parseInt(b.id) ? -1 : 1;
-            }
-        });
-        let oldTable = document.querySelector("tbody");
-        if (oldTable !== null) oldTable.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+    if (order === "descending" && column === "icon") {
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        column = "xs";
+        if (checkImage(a.images[column])) {
+          return 1;
+        } else if (checkImage(b.images[column])) {
+          return -1;
+        } else {
+          return parseInt(a.id) > parseInt(b.id) ? -1 : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
-        createSortedTable(sortedHeroes, value);
+      createSortedTable(sortedHeroes, value);
     }
 
-        if (order === "ascending" && column === "icon") {
-        x.target.setAttribute("data-order", "descending");
-        sortedHeroes = sortHeroes.sort((a, b) => {
-            column = "xs";
-            if (checkImage(a.images[column])) {
-                return 1;
-            } else if (checkImage(b.images[column])) {
-                return -1;
-            } else {
-                return parseInt(a.id) > parseInt(b.id) ? 1 : -1;
-            }
-        });
-        let oldTable = document.querySelector("tbody");
-        if (oldTable !== null) oldTable.remove();
+    if (order === "ascending" && column === "icon") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        column = "xs";
+        if (checkImage(a.images[column])) {
+          return 1;
+        } else if (checkImage(b.images[column])) {
+          return -1;
+        } else {
+          return parseInt(a.id) > parseInt(b.id) ? 1 : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
-        createSortedTable(sortedHeroes, value);
-
+      createSortedTable(sortedHeroes, value);
     }
   };
 }
@@ -742,112 +740,112 @@ async function loadHeroes() {
 loadHeroes();
 
 const createTable = (list, value) => {
-    let table = document.createElement("table");
-    table.setAttribute("id", "heroesTable"); //makes a table element for the page
-    for (let i = 0; i < value; i++) {
-        let row = table.insertRow(i);
-        row.insertCell(0).innerHTML = "<img src = ${list[i].images.xs} >"; 
-        row.insertCell(1).innerHTML = list[i].name;
-        row.insertCell(2).innerHTML = list[i].biography.fullName;
-        row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
-        row.insertCell(4).innerHTML = list[i].powerstats.strength;
-        row.insertCell(5).innerHTML = list[i].powerstats.speed;
-        row.insertCell(6).innerHTML = list[i].powerstats.durability;
-        row.insertCell(7).innerHTML = list[i].powerstats.power;
-        row.insertCell(8).innerHTML = list[i].powerstats.combat;
-        row.insertCell(9).innerHTML = list[i].appearance.race;
-        row.insertCell(10).innerHTML = list[i].appearance.gender;
-        row.insertCell(11).innerHTML = list[i].appearance.height[1];
-        row.insertCell(12).innerHTML = list[i].appearance.weight[1];
-        row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
-        row.insertCell(14).innerHTML = list[i].biography.alignment;
-    }
-    document.body.append(table);
+  let table = document.createElement("table");
+  table.setAttribute("id", "heroesTable"); //makes a table element for the page
+  for (let i = 0; i < value; i++) {
+    let row = table.insertRow(i);
+    row.insertCell(0).innerHTML = "<img src = ${list[i].images.xs} >";
+    row.insertCell(1).innerHTML = list[i].name;
+    row.insertCell(2).innerHTML = list[i].biography.fullName;
+    row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
+    row.insertCell(4).innerHTML = list[i].powerstats.strength;
+    row.insertCell(5).innerHTML = list[i].powerstats.speed;
+    row.insertCell(6).innerHTML = list[i].powerstats.durability;
+    row.insertCell(7).innerHTML = list[i].powerstats.power;
+    row.insertCell(8).innerHTML = list[i].powerstats.combat;
+    row.insertCell(9).innerHTML = list[i].appearance.race;
+    row.insertCell(10).innerHTML = list[i].appearance.gender;
+    row.insertCell(11).innerHTML = list[i].appearance.height[1];
+    row.insertCell(12).innerHTML = list[i].appearance.weight[1];
+    row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
+    row.insertCell(14).innerHTML = list[i].biography.alignment;
+  }
+  document.body.append(table);
 };
 
 const createSortedTable = (list, value) => {
-    let table = document.createElement("tbody");
-    table.setAttribute("id", "heroesTable"); //makes a table element for the page
-    for (let i = 0; i < value; i++) {
-        let row = table.insertRow(i);
-        row.insertCell(0).innerHTML = "<img src =" + list[i].images.xs + ">"; 
-        row.insertCell(1).innerHTML = list[i].name;
-        row.insertCell(2).innerHTML = list[i].biography.fullName;
-        row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
-        row.insertCell(4).innerHTML = list[i].powerstats.strength;
-        row.insertCell(5).innerHTML = list[i].powerstats.speed;
-        row.insertCell(6).innerHTML = list[i].powerstats.durability;
-        row.insertCell(7).innerHTML = list[i].powerstats.power;
-        row.insertCell(8).innerHTML = list[i].powerstats.combat;
-        row.insertCell(9).innerHTML = list[i].appearance.race;
-        row.insertCell(10).innerHTML = list[i].appearance.gender;
-        row.insertCell(11).innerHTML = list[i].appearance.height[1];    // [ft+inch, cm] using cm[1] metric
-        row.insertCell(12).innerHTML = list[i].appearance.weight[1];    // [lb, kg] using kg[1] metric
-        row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
-        row.insertCell(14).innerHTML = list[i].biography.alignment;
-    }
-    document.querySelector("table").appendChild(table);
+  let table = document.createElement("tbody");
+  table.setAttribute("id", "heroesTable"); //makes a table element for the page
+  for (let i = 0; i < value; i++) {
+    let row = table.insertRow(i);
+    row.insertCell(0).innerHTML = "<img src =" + list[i].images.xs + ">";
+    row.insertCell(1).innerHTML = list[i].name;
+    row.insertCell(2).innerHTML = list[i].biography.fullName;
+    row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
+    row.insertCell(4).innerHTML = list[i].powerstats.strength;
+    row.insertCell(5).innerHTML = list[i].powerstats.speed;
+    row.insertCell(6).innerHTML = list[i].powerstats.durability;
+    row.insertCell(7).innerHTML = list[i].powerstats.power;
+    row.insertCell(8).innerHTML = list[i].powerstats.combat;
+    row.insertCell(9).innerHTML = list[i].appearance.race;
+    row.insertCell(10).innerHTML = list[i].appearance.gender;
+    row.insertCell(11).innerHTML = list[i].appearance.height[1]; // [ft+inch, cm] using cm[1] metric
+    row.insertCell(12).innerHTML = list[i].appearance.weight[1]; // [lb, kg] using kg[1] metric
+    row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
+    row.insertCell(14).innerHTML = list[i].biography.alignment;
+  }
+  document.querySelector("table").appendChild(table);
 };
 
 const sortAscending = (arr, a, b) => {
-    arr.sort((a, b) => {
-        if (a === null || a === "-") {
-            return 1;
-        }
+  arr.sort((a, b) => {
+    if (a === null || a === "-") {
+      return 1;
+    }
 
-        if (b === null || b === "-") {
-            return -1;
-        }
+    if (b === null || b === "-") {
+      return -1;
+    }
 
-        if (a === b) {
-            return 0;
-        }
+    if (a === b) {
+      return 0;
+    }
 
-        return a < b ? -1 : 1;
-    });
+    return a < b ? -1 : 1;
+  });
 };
 
 const sortDescending = (arr, a, b) => {
-    arr.sort((a, b) => {
-        if (a === null || a === "-") {
-            return 1;
-        }
+  arr.sort((a, b) => {
+    if (a === null || a === "-") {
+      return 1;
+    }
 
-        if (b === null || b === "-") {
-            return -1;
-        }
+    if (b === null || b === "-") {
+      return -1;
+    }
 
-        if (a === b) {
-            return 0;
-        }
+    if (a === b) {
+      return 0;
+    }
 
-        return a < b ? 1 : -1;
-    });
+    return a < b ? 1 : -1;
+  });
 };
 
 const convertHeight = (a) => {
-    if (a.includes("cm")) {
-        return parseInt(a);
-    } else if (a.includes("meters")) {
-        return parseInt(a) * 100;
-    }
+  if (a.includes("cm")) {
+    return parseInt(a);
+  } else if (a.includes("meters")) {
+    return parseInt(a) * 100;
+  }
 };
 
 const convertWeight = (a) => {
-    if (a.includes("kg")) {
-        return parseInt(a);
-    } else if (a.includes("tons")) {
-        if (a.includes(",")) {
-            return parseInt(a) * (1000 * 1000);
-        } else {
-            return parseInt(a) * 1000;
-        }
+  if (a.includes("kg")) {
+    return parseInt(a);
+  } else if (a.includes("tons")) {
+    if (a.includes(",")) {
+      return parseInt(a) * (1000 * 1000);
+    } else {
+      return parseInt(a) * 1000;
     }
+  }
 };
 
 const checkImage = (x) => {
-    if (x.includes("no-portrait")) {
-        return true;
-    }
-    return false;
+  if (x.includes("no-portrait")) {
+    return true;
+  }
+  return false;
 };
