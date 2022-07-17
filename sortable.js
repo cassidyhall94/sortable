@@ -764,3 +764,27 @@ const createTable = (list, value) => {
     }
     document.body.append(table);
 };
+
+const createSortedTable = (list, value) => {
+    let table = document.createElement("tbody");
+    table.setAttribute("id", "heroesTable"); //makes a table element for the page
+    for (let i = 0; i < value; i++) {
+        let row = table.insertRow(i);
+        row.insertCell(0).innerHTML = "<img src =" + list[i].images.xs + ">"; 
+        row.insertCell(1).innerHTML = list[i].name;
+        row.insertCell(2).innerHTML = list[i].biography.fullName;
+        row.insertCell(3).innerHTML = list[i].powerstats.intelligence;
+        row.insertCell(4).innerHTML = list[i].powerstats.strength;
+        row.insertCell(5).innerHTML = list[i].powerstats.speed;
+        row.insertCell(6).innerHTML = list[i].powerstats.durability;
+        row.insertCell(7).innerHTML = list[i].powerstats.power;
+        row.insertCell(8).innerHTML = list[i].powerstats.combat;
+        row.insertCell(9).innerHTML = list[i].appearance.race;
+        row.insertCell(10).innerHTML = list[i].appearance.gender;
+        row.insertCell(11).innerHTML = list[i].appearance.height[1];    // [ft+inch, cm] using cm[1] metric
+        row.insertCell(12).innerHTML = list[i].appearance.weight[1];    // [lb, kg] using kg[1] metric
+        row.insertCell(13).innerHTML = list[i].biography.placeOfBirth;
+        row.insertCell(14).innerHTML = list[i].biography.alignment;
+    }
+    document.querySelector("table").appendChild(table);
+};
