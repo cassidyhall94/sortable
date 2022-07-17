@@ -284,6 +284,9 @@ async function loadHeroes() {
             if (oldTable !== null) oldTable.remove();
 
             createSortedTable(sortedHeroes, value);
-        };;
+        };
+
+// CASSIDY
+        
     };
 };
