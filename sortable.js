@@ -648,7 +648,7 @@ async function loadHeroes() {
       createSortedTable(sortedHeroes, value);
     }
 
-    if (order === "descending" && column === "alignment") {
+      if (order === "descending" && column === "alignment") {
       x.target.setAttribute("data-order", "ascending");
       sortedHeroes = sortHeroes.sort((a, b) => {
         if (
@@ -672,6 +672,8 @@ async function loadHeroes() {
       let table = document.querySelector("tbody");
 
       if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+      }
       if (order === "ascending" && column === "alignment") {
         x.target.setAttribute("data-order", "descending");
         sortedHeroes = sortHeroes.sort((a, b) => {
@@ -698,6 +700,41 @@ async function loadHeroes() {
 
         createSortedTable(sortedHeroes, value);
       }
+      if (order === "descending" && column === "icon") {
+        x.target.setAttribute("data-order", "ascending");
+        sortedHeroes = sortHeroes.sort((a, b) => {
+            column = "xs";
+            if (checkImage(a.images[column])) {
+                return 1;
+            } else if (checkImage(b.images[column])) {
+                return -1;
+            } else {
+                return parseInt(a.id) > parseInt(b.id) ? -1 : 1;
+            }
+        });
+        let oldTable = document.querySelector("tbody");
+        if (oldTable !== null) oldTable.remove();
+
+        createSortedTable(sortedHeroes, value);
+    }
+
+        if (order === "ascending" && column === "icon") {
+        x.target.setAttribute("data-order", "descending");
+        sortedHeroes = sortHeroes.sort((a, b) => {
+            column = "xs";
+            if (checkImage(a.images[column])) {
+                return 1;
+            } else if (checkImage(b.images[column])) {
+                return -1;
+            } else {
+                return parseInt(a.id) > parseInt(b.id) ? 1 : -1;
+            }
+        });
+        let oldTable = document.querySelector("tbody");
+        if (oldTable !== null) oldTable.remove();
+
+        createSortedTable(sortedHeroes, value);
+            
     }
   };
 }
