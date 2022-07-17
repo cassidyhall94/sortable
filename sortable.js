@@ -128,10 +128,6 @@ async function loadHeroes() {
     let heroes = await getHeroes();
     sortHeroes = heroes;
 
-    const searchBox = document.createElement("input");
-    searchBox.setAttribute("type", "text");
-    document.body.appendChild(searchBox);
-
     let size = document.getElementById("size-options");
     let value = size.options[size.selectedIndex].text;
     let pageSize = value;
@@ -179,11 +175,69 @@ async function loadHeroes() {
     document.querySelector("#nextButton").addEventListener("click", nextPage, false);
     document.querySelector("#prevButton").addEventListener("click", previousPage, false);
 
+    const attributes = {
+        unparseable: [
+            "icon",
+        ],
+        s1: [
+            "name",
+            "fullName",
+        ],
+        numerical: [
+            "intelligence",
+            "strength",
+            "speed",
+            "durability",
+            "power",
+            "combat",
+        ],
+        s2: [
+            "race",
+            "gender",
+        ],
+        m1: [
+            "height",
+            "weight",
+        ],
+        s3: [
+            "placeOfBirth",
+            "alignment",
+        ]
+    };
+
+    const headers = Object.values(attributes).flat();
+
+    const searchBox = document.getElementById("search-input");
+    const controls = document.getElementById("controls")
+    const select = document.getElementById("search-select");
+
+    for(let i = 1; i < headers.length; i++) {
+        const opt = headers[i];
+        const el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+    }
+
+    controls.appendChild(select);
+
     searchBox.addEventListener("keyup", (event) => {
-        let characters = event.target.value.toLowerCase();
-        let filteredHeroes = heroes.filter((hero) =>
-            hero.name.toLowerCase().includes(characters)
-        );
+        const characters = event.target.value.toLowerCase();
+        const type = select.value;
+        const filteredHeroes = heroes.filter((hero) => {
+            if (attributes.numerical.includes(type)) {
+                return hero.powerstats[type] == characters
+            } else if (attributes.s1.includes(type) || attributes.s2.includes(type)) {
+                return hero[type].toLowerCase().includes(characters)
+            } else if (attributes.s3.includes(type)) {
+                return hero.biography[type].toLowerCase().includes(characters)
+            } else if (attributes.m1.includes(type)) {  
+                if (hero.appearance[type][1] !== undefined) {
+                    return hero.appearance[type][1].toLowerCase().includes(characters)
+                }
+            }
+            return false
+        });
         let table = document.querySelector("tbody");
 
         if (table !== null) table.remove();
@@ -207,24 +261,6 @@ async function loadHeroes() {
     createTable(heroes, value);
 
     let tableOne = document.querySelector("table");
-
-    const headers = [
-        "icon",
-        "name",
-        "fullName",
-        "intelligence",
-        "strength",
-        "speed",
-        "durability",
-        "power",
-        "combat",
-        "race",
-        "gender",
-        "height",
-        "weight",
-        "placeOfBirth",
-        "alignment",
-    ];
 
     let header = tableOne.createTHead();
     let headerRow = header.insertRow(0);

@@ -1,6 +1,25 @@
 table{
-    background-color:green;
+    background-color:whitesmoke;
+    word-wrap: break-word;
     max-height:20%;
     table-layout: fixed;
     width: 100%;
+}
+
+body{
+    background-color: azure;
+    border: 4px transparent;
+}
+
+th, td {
+    align-content: center;
+    border: 0.5px solid #28bf93;
+}
+
+tr:hover {
+    background-color: #28bf93;
+}
+
+.controls{
+    background-color: whitesmoke;
 }
