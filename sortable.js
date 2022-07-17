@@ -27,9 +27,9 @@ async function loadHeroes() {
 
   size.addEventListener("change", (event) => {
     value = event.target.value;
-    let oldTable = document.querySelector("tbody");
+    let table = document.querySelector("tbody");
 
-    if (oldTable !== null) oldTable.remove();
+    if (table !== null) table.remove();
 
     createTable(heroes, value);
     pageSize = value;
@@ -51,9 +51,9 @@ async function loadHeroes() {
         currentPage * pageSize - pageSize,
         currentPage * pageSize
       );
-      let oldTable = document.querySelector("tbody");
+      let table = document.querySelector("tbody");
 
-      if (oldTable !== null) oldTable.remove();
+      if (table !== null) table.remove();
 
       value = pageSize;
       createTable(newArray, value);
@@ -63,9 +63,9 @@ async function loadHeroes() {
     if (currentPage <= heroes.length / pageSize) {
       if (currentPage * pageSize < heroes.length) currentPage++;
 
-      let oldTable = document.querySelector("tbody");
+      let table = document.querySelector("tbody");
 
-      if (oldTable !== null) oldTable.remove();
+      if (table !== null) table.remove();
 
       value = pageSize;
 
@@ -80,9 +80,9 @@ async function loadHeroes() {
     let filteredHeroes = heroes.filter((hero) =>
       hero.name.toLowerCase().includes(characters)
     );
-    let oldTable = document.querySelector("tbody");
+    let table = document.querySelector("tbody");
 
-    if (oldTable !== null) oldTable.remove();
+    if (table !== null) table.remove();
 
     value = filteredHeroes.length;
 
@@ -144,9 +144,9 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a[column] > b[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
+      let table = document.querySelector("tbody");
 
-      if (oldTable !== null) oldTable.remove();
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -156,9 +156,9 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a[column] < b[column] ? 1 : -1
       );
-      let oldTable = documnet.querySelector("tbody");
+      let table = documnet.querySelector("tbody");
 
-      if (oldTable !== null) oldTable.remove();
+      if (table !== null) table.remove();
     }
 
     if (order === "descending" && column === "fullName") {
@@ -183,8 +183,8 @@ async function loadHeroes() {
         }
       });
 
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
     if (order === "ascending" && column === "fullName") {
@@ -209,8 +209,8 @@ async function loadHeroes() {
         }
       });
 
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
 
@@ -219,8 +219,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -230,8 +230,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -241,8 +241,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -252,8 +252,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -263,8 +263,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -274,8 +274,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -285,8 +285,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -296,8 +296,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -307,8 +307,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -318,8 +318,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -329,8 +329,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] > b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -340,8 +340,8 @@ async function loadHeroes() {
       sortedHeroes = sortHeroes.sort((a, b) =>
         a.powerstats[column] < b.powerstats[column] ? 1 : -1
       );
-      let oldTable = document.querySelector("tbody");
-      if (oldTable !== null) oldTable.remove();
+      let table = document.querySelector("tbody");
+      if (table !== null) table.remove();
 
       createSortedTable(sortedHeroes, value);
     }
@@ -647,7 +647,58 @@ async function loadHeroes() {
       if (table !== null) table.remove();
       createSortedTable(sortedHeroes, value);
     }
-    //
+
+    if (order === "descending" && column === "alignment") {
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.biography[column] === null ||
+          a.biography[column] === "-" ||
+          a.biography[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.biography[column] === null ||
+          b.biography[column] === "-" ||
+          b.biography[column] === ""
+        ) {
+          return -1;
+        } else if (a.biography[column] === b.biography[column]) {
+          return 0;
+        } else {
+          return a.biography[column] < b.biography[column] ? -1 : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      if (order === "ascending" && column === "alignment") {
+        x.target.setAttribute("data-order", "descending");
+        sortedHeroes = sortHeroes.sort((a, b) => {
+          if (
+            a.biography[column] === null ||
+            a.biography[column] === "-" ||
+            a.biography[column] === ""
+          ) {
+            return 1;
+          } else if (
+            b.biography[column] === null ||
+            b.biography[column] === "-" ||
+            b.biography[column] === ""
+          ) {
+            return -1;
+          } else if (a.biography[column] === b.biography[column]) {
+            return 0;
+          } else {
+            return a.biography[column] < b.biography[column] ? 1 : -1;
+          }
+        });
+        let table = document.querySelector("tbody");
+        if (table !== null) table.remove();
+
+        createSortedTable(sortedHeroes, value);
+      }
+    }
   };
 }
 
