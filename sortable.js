@@ -788,3 +788,66 @@ const createSortedTable = (list, value) => {
     }
     document.querySelector("table").appendChild(table);
 };
+
+const sortAscending = (arr, a, b) => {
+    arr.sort((a, b) => {
+        if (a === null || a === "-") {
+            return 1;
+        }
+
+        if (b === null || b === "-") {
+            return -1;
+        }
+
+        if (a === b) {
+            return 0;
+        }
+
+        return a < b ? -1 : 1;
+    });
+};
+
+const sortDescending = (arr, a, b) => {
+    arr.sort((a, b) => {
+        if (a === null || a === "-") {
+            return 1;
+        }
+
+        if (b === null || b === "-") {
+            return -1;
+        }
+
+        if (a === b) {
+            return 0;
+        }
+
+        return a < b ? 1 : -1;
+    });
+};
+
+const convertHeight = (a) => {
+    if (a.includes("cm")) {
+        return parseInt(a);
+    } else if (a.includes("meters")) {
+        return parseInt(a) * 100;
+    }
+};
+
+const convertWeight = (a) => {
+    if (a.includes("kg")) {
+        return parseInt(a);
+    } else if (a.includes("tons")) {
+        if (a.includes(",")) {
+            return parseInt(a) * (1000 * 1000);
+        } else {
+            return parseInt(a) * 1000;
+        }
+    }
+};
+
+const checkImage = (x) => {
+    if (x.includes("no-portrait")) {
+        return true;
+    }
+    return false;
+};
