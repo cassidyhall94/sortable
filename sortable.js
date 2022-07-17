@@ -526,76 +526,129 @@ async function loadHeroes() {
       createSortedTable(sortedHeroes, value);
     }
     if (order === "descending" && column === "weight") {
-        x.target.setAttribute("data-order", "ascending");
-        sortedHeroes = sortHeroes.sort((a, b) => {
-          if (
-            a.appearance[column] === null ||
-            a.appearance[column] === "-" ||
-            a.appearance[column] === "" ||
-            a.appearance[column][1] === undefined
-          ) {
-            return 1;
-          } else if (
-            b.appearance[column] === null ||
-            b.appearance[column] === "-" ||
-            a.appearance[column] === "" ||
-            b.appearance[column][1] === undefined
-          ) {
-            return -1;
-          } else if (
-              //Q to add convertWeight function
-            convertWeight(a.appearance[column][1]) ===
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          a.appearance[column][1] === undefined
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          b.appearance[column][1] === undefined
+        ) {
+          return -1;
+        } else if (
+          //Q to add convertWeight function
+          convertWeight(a.appearance[column][1]) ===
+          convertWeight(b.appearance[column][1])
+        ) {
+          return 0;
+        } else {
+          return convertWeight(a.appearance[column][1]) <
             convertWeight(b.appearance[column][1])
-          ) {
-            return 0;
-          } else {
-            return convertWeight(a.appearance[column][1]) <
-              convertWeight(b.appearance[column][1])
-              ? -1
-              : 1;
-          }
-        });
-        let table = document.querySelector("tbody");
-  
-        if (table !== null) table.remove();
-        createSortedTable(sortedHeroes, value);
-      }
-  
-      if (order === "ascending" && column === "weight") {
-        x.target.setAttribute("data-order", "descending");
-        sortedHeroes = sortHeroes.sort((a, b) => {
-          if (
-            a.appearance[column] === null ||
-            a.appearance[column] === "-" ||
-            a.appearance[column] === "" ||
-            a.appearance[column][1] === undefined
-          ) {
-            return 1;
-          } else if (
-            b.appearance[column] === null ||
-            b.appearance[column] === "-" ||
-            a.appearance[column] === "" ||
-            b.appearance[column][1] === undefined
-          ) {
-            return -1;
-          } else if (
-            convertWeight(a.appearance[column][1]) ===
-            convertWeight(b.appearance[column][1])
-          ) {
-            return 0;
-          } else {
-            return convertWeight(a.appearance[column][1]) <
-              convertWeight(b.appearance[column][1])
-              ? 1
-              : -1;
-          }
-        });
-        let table = document.querySelector("tbody");
-  
-        if (table !== null) table.remove();
-        createSortedTable(sortedHeroes, value);
-      }
+            ? -1
+            : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
 
-      //
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+
+    if (order === "ascending" && column === "weight") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.appearance[column] === null ||
+          a.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          a.appearance[column][1] === undefined
+        ) {
+          return 1;
+        } else if (
+          b.appearance[column] === null ||
+          b.appearance[column] === "-" ||
+          a.appearance[column] === "" ||
+          b.appearance[column][1] === undefined
+        ) {
+          return -1;
+        } else if (
+          convertWeight(a.appearance[column][1]) ===
+          convertWeight(b.appearance[column][1])
+        ) {
+          return 0;
+        } else {
+          return convertWeight(a.appearance[column][1]) <
+            convertWeight(b.appearance[column][1])
+            ? 1
+            : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+
+    if (order === "descending" && column === "placeOfBirth") {
+      x.target.setAttribute("data-order", "ascending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.biography[column] === null ||
+          a.biography[column] === "-" ||
+          a.biography[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.biography[column] === null ||
+          b.biography[column] === "-" ||
+          b.biography[column] === ""
+        ) {
+          return -1;
+        } else if (a.biography[column] === b.biography[column]) {
+          return 0;
+        } else {
+          return a.biography[column] < b.biography[column] ? -1 : 1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+
+    if (order === "ascending" && column === "placeOfBirth") {
+      x.target.setAttribute("data-order", "descending");
+      sortedHeroes = sortHeroes.sort((a, b) => {
+        if (
+          a.biography[column] === null ||
+          a.biography[column] === "-" ||
+          a.biography[column] === ""
+        ) {
+          return 1;
+        } else if (
+          b.biography[column] === null ||
+          b.biography[column] === "-" ||
+          b.biography[column] === ""
+        ) {
+          return -1;
+        } else if (a.biography[column] === b.biography[column]) {
+          return 0;
+        } else {
+          return a.biography[column] < b.biography[column] ? 1 : -1;
+        }
+      });
+      let table = document.querySelector("tbody");
+
+      if (table !== null) table.remove();
+      createSortedTable(sortedHeroes, value);
+    }
+    //
   };
 }
