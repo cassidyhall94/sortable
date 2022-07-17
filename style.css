@@ -1,0 +1,6 @@
+table{
+    background-color:green;
+    max-height:20%;
+    table-layout: fixed;
+    width: 100%;
+}
